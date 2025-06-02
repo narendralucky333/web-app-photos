@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Photo Gallery</title>
+  <style>
+    img {
+      width: 300px;
+      margin: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My Photo Gallery</h1>
+  <div id="gallery">
+    <!-- Images will be inserted here -->
+  </div>
+  <script>
+    fetch("/photos")
+      .then(res => res.json())
+      .then(images => {
+        const gallery = document.getElementById("gallery");
+        images.forEach(img => {
+          const image = document.createElement("img");
+          image.src = "/photos/" + img;
+          gallery.appendChild(image);
+        });
+      });
+  </script>
+</body>
+</html>
